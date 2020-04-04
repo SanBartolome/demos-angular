@@ -5,7 +5,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
-import { map, bufferCount, filter } from 'rxjs/operators';
+import { map, bufferCount, filter, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-clickstream-demo',
@@ -27,9 +27,11 @@ export class ClickstreamDemoComponent implements OnInit {
         map(() => new Date().getTime()),
         bufferCount(this.clickCount),
         filter((timestamps) => {
+          return timestamps[0] > new Date().getTime() - this.clickTimespan;
+        }),
+        tap(() => {
           this.count++;
           this.cdr.detectChanges();
-          return timestamps[0] > new Date().getTime() - this.clickTimespan;
         })
       )
       .subscribe();
