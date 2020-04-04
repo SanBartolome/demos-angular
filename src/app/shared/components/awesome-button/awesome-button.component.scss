@@ -1,0 +1,28 @@
+button {
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  padding: 10px;
+}
+
+button.scaleBounce {
+  animation: scaleBounce 0.2s;
+}
+
+@keyframes scaleBounce {
+  30% {
+    transform: scale(1.01);
+  }
+  40% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
